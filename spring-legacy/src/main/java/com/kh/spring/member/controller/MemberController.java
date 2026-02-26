@@ -27,8 +27,6 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	
-	  @RequestMapping(value = "/member/login", method= RequestMethod.POST) 
 	/* public String login(HttpServletRequest req) {
 	 * System.out.println(req.getParameter("userId"));
 	 * System.out.println(req.getParameter("userPwd")); return "home"; }
@@ -63,8 +61,9 @@ public class MemberController {
 	   *  - 매개변수 클래스와 일치하는 클래스의 "기본생성자" 호출 후,
 	   *    파라미터의 key값과 클래스의 필드명이 "일치"하는 경우 setter호출
 	   * */
-	  public String login(Member m) {
-		  System.out.println(m);
-		  return "home";
-	  }
+	@RequestMapping(value = "/member/login", method= RequestMethod.POST) 
+	public String login(Member m) {
+		System.out.println(m);
+		return "home";
+	}
 }
