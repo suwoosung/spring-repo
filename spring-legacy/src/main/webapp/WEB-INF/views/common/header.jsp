@@ -88,6 +88,7 @@ height:80%; position:absolute; margin:auto; top:0px; bottom:0px; right:0px; left
 	alertify.alert("서비스요청결과",'${alertMsg}')
 </script>
 </c:if>
+<c:set var="contextPath" value="${pageContext.request.contextPath }" scope="application" />
 	<div id="header">
 		<div id="header_1">
 			<div id="header_1_left">
@@ -97,10 +98,11 @@ height:80%; position:absolute; margin:auto; top:0px; bottom:0px; right:0px; left
 			
 			</div>
 			<div id="header_1_righter">
+				
 				<c:choose>
                     <c:when test="${empty loginUser}">
                         <!-- 로그인전이라면 -->
-                        <a href="${contextPath }/insert.me">회원가입</a>
+                        <a href="${contextPath }/member/insert">회원가입</a>
                         <!-- 모달창 설정 : data-target에 정의해놓은 아이디의 dom요소를 띄워줌 -->
                         <a href="${contextPath }/member/login">로그인</a>
                     </c:when>
