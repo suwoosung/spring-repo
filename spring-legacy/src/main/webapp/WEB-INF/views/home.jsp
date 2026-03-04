@@ -9,7 +9,6 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/views/common/header.jsp" />
-    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
     <div class="content">
         <div class="content-1">
@@ -21,8 +20,9 @@
             <button id="select1">조회</button>
             <div id="result1" style="height: 150px"></div>
         </div>
-
     </div>
+    
+    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
     <script>
         document.getElementById("select1").addEventListener("click", function(){

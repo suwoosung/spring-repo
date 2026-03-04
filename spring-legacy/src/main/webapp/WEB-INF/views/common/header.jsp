@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +47,9 @@
 	height:100%;
 	float:left;
 }
-#header_1_left {width :30%; position : relative; background:black;}
+#header_1_left {width :30%; position : relative;
+		background : black;
+}
 #header_1_center{width: 40%;}
 #header_1_right{width : 30%;}
 
@@ -88,51 +92,48 @@ height:80%; position:absolute; margin:auto; top:0px; bottom:0px; right:0px; left
 	alertify.alert("서비스요청결과",'${alertMsg}')
 </script>
 </c:if>
-<c:set var="contextPath" value="${pageContext.request.contextPath }" scope="application" />
 	<div id="header">
 		<div id="header_1">
 			<div id="header_1_left">
 				<img src="https://khacademy.co.kr/resources/images/common/header/khlogo-white.svg" />
 			</div>
 			<div id="header_1_center">
-			
 			</div>
-			<div id="header_1_righter">
+			<c:set var="contextPath" value="${pageContext.request.contextPath}" scope="application" />
+			<div id="header_1_right">
 				
-				<c:choose>
-                    <c:when test="${empty loginUser}">
-                        <!-- 로그인전이라면 -->
-                        <a href="${contextPath }/member/insert">회원가입</a>
-                        <!-- 모달창 설정 : data-target에 정의해놓은 아이디의 dom요소를 띄워줌 -->
-                        <a href="${contextPath }/member/login">로그인</a>
-                    </c:when>
-                    <c:otherwise>
-                        <label>${loginUser.userName}님 환영합니다.</label> &nbsp;&nbsp;
-                        <a href="${contextPath }/member/myPage">마이페이지</a>
-                        <a href="${contextPath }/member/logout">로그아웃</a>
-                    </c:otherwise>
-                </c:choose>
+				<!-- 로그인하지 않은 사용자가 보게될 화면 -->
+				<sec:authorize access="isAnonymous()">
+					<a href="${contextPath }/security/insert">회원가입</a>
+					<a href="${contextPath}/member/login">로그인</a>				
+				</sec:authorize>	
+					
+				<sec:authorize access="isAuthenticated()" >
+					<!-- 
+						authentication내부의 데이터
+						1. principal : 사용자 정보가 담기는 영역
+						2. Authorities : 사용자의 권한이 담기는 영역
+						3. 크리덴셜 : 사용자의 암호화된 "비밀번호"가 담기는 영역 
+					 -->
+					<label><sec:authentication property="principal.userName"/> 님 환영합니다.</label> &nbsp;&nbsp;
+					<a href="${contextPath }/member/myPage">마이페이지</a>
+					
+					<form:form method="post" action="${contextPath }/member/logout" style="display: inline;">
+						<button  class="border-0 bg-transparent text-secondary p-0 ml-2"
+						>로그아웃</button>					
+					</form:form>				
+				</sec:authorize>				
 			</div>
 		</div>
 		<div id="header_2">
 			<ul>
 				<li><a href="${contextPath }">HOME</a></li>
-                <li><a href="${contextPath }/chat/chatRoomList">채팅</a></li>
-
-                <c:forEach items='${boardTypeList}' var='boardType'>
-                    <li><a href="${contextPath }/board/list/${boardType.boardCd}">${boardType.boardName}</a></li>
-                </c:forEach>
+				<li><a href="${contextPath }/chat/chatRoomList">채팅</a></li>
+				<c:forEach items='${boardTypeList}' var='boardType'>
+					<li><a href="${contextPath }/board/list/${boardType.boardCd}">${boardType.boardName}</a></li>
+				</c:forEach>			
 			</ul>
 		</div>	
 	</div>
-
-
-
-
-
-
-
-
-
 </body>
 </html>

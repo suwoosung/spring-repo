@@ -42,9 +42,9 @@
 <body>
     <div id="footer">
         <div id="footer-1">
-            <a href="#">이용약관</a> | 
-            <a href="#">개인정보취급방침</a> | 
-            <a href="#">인재채용</a> | 
+            <a href="#">이용약관</a> |
+            <a href="#">개인정보취급방침</a> |
+            <a href="#">인재채용</a> |
             <a href="#">고객센터</a>
         </div>
 
