@@ -132,7 +132,7 @@ public class MemberController {
 			 * 의 데이터를 requst Scope로 변경해준다.
 			 * */
 		}
-		mv.setViewName("redirect:/");// 메인페이즈로 리다이렉트.
+		mv.setViewName("redirect:/");// 메인페이지로 리다이렉트.
 		
 		return mv;
 	}

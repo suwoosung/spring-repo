@@ -9,7 +9,7 @@ public class MemberValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		// 유효성 검사를 수행할 클래스를 지정하는 메서ㅡ
+		// 유효성 검사를 수행할 클래스를 지정하는 메서드
 		return Member.class.isAssignableFrom(clazz);
 	}
 
