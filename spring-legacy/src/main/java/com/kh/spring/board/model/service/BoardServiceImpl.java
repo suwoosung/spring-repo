@@ -77,7 +77,7 @@ public class BoardServiceImpl implements BoardService{
 			result = boardDao.insertBoardImgList(imgList);
 			
 			if(result != imgList.size()) {
-				throw new RuntimeException("첨부파일 등록 에버 발생");
+				throw new RuntimeException("첨부파일 등록 에러 발생");
 			}
 		}
 		return result;
